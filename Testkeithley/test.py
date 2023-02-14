@@ -1,10 +1,10 @@
 from PyQt5 import QtWidgets
-from keithley2600 import Keithley2600
 from keithleygui import KeithleyGuiApp
 
-app = QtWidgets.QApplication([])
+if __name__ == '__main__':
 
-keithley = Keithley2600('TCPIP::169.254.0.1::INSTR')
-keithley_gui = KeithleyGuiApp(keithley)
-keithley_gui.show()
-app.exec()
+    app = QtWidgets.QApplication([])
+
+    keithley_gui = KeithleyGuiApp()
+    keithley_gui.show()
+    app.exec()
