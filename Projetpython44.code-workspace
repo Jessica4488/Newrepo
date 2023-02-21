@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "Projetpython44"
+		}
+	],
+	"settings": {
+		"python.analysis.autoImportCompletions": false
+	}
+}
