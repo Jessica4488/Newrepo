@@ -31,8 +31,10 @@
 
 <form method="POST">
     {% csrf_token %}
-    <input type="text" name="task-name">
+    <input type="text" name="task-description">
     <button hx-post="{% url 'add-task' %}"
+            hx-target="#tasks"
+            hx-swap="beforeend"
             type="submit">
         Ajouter
     </button>

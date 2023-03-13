@@ -7,7 +7,7 @@ class Collection(models.Model):
 
     @classmethod
     def get_default_collection(cls) -> "Collection":
-        collection, _ = cls.objects.get_or_create(name="Défaut", slug="_defaut")
+        collection, _ = cls.objects.get_or_create(name="Défaut", slug=Collection.default_name)
         return collection
 
     def __str__(self):

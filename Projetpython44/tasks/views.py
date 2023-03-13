@@ -24,4 +24,10 @@ def add_collection(request):
 
 
 def add_task(request):
+    collection = Collection.get_default_collection()
+
+    description = request.POST.
+    Task.objects.create(description=request.POST.get(""))
+
+
     return HttpResponse("")
