@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.html import escape
 from django.utils.text import slugify
+from django.template.loader import render_to_string
 
 from tasks.models import Collection, Task
 
@@ -15,7 +16,8 @@ def index(request):
         collection = get_object_or_404(Collection, slug=collection_slug)
 
     context["collections"] = Collection.objects.order_by("slug")
-    context["tasks"] = render_to_template()
+    tasks = collection.task_set.order_by("description")
+    context["tasks"] = render_to_string('tasks/tasks.html', context={"tasks": tasks})
 
     return render(request, 'tasks/index.html', context=context)
 
