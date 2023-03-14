@@ -15,7 +15,7 @@ def index(request):
         collection = get_object_or_404(Collection, slug=collection_slug)
 
     context["collections"] = Collection.objects.order_by("slug")
-    context["tasks"] = collection.task_set.order_by("description")
+    context["tasks"] = render_to_template()
 
     return render(request, 'tasks/index.html', context=context)
 
