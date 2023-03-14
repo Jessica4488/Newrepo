@@ -12,7 +12,7 @@
 
 <div id="collections">
     {% for collection in collections %}
-        <h2>{{ collection.name }}</h2>
+        <button hx-get="{% url 'get-tasks' collection.pk %}"> {{ collection.name }} </button>
     {% endfor %}
 </div>
 
