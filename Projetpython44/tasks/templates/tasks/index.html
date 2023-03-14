@@ -31,7 +31,7 @@
 <form method="POST">
     {% csrf_token %}
     <input type="text" name="task-description">
-    <button hx-post="{% url 'add-task' %}"
+    <button hx-post="{% url 'add-task' collection.pk %}"
             hx-target="#tasks"
             hx-swap="beforeend"
             type="submit">

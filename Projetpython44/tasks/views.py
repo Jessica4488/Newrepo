@@ -16,6 +16,7 @@ def index(request):
         collection = get_object_or_404(Collection, slug=collection_slug)
 
     context["collections"] = Collection.objects.order_by("slug")
+    context["collection"] = collection
     context["tasks"] = collection.task_set.order_by("description")
 
     return render(request, 'tasks/index.html', context=context)
@@ -30,8 +31,8 @@ def add_collection(request):
     return HttpResponse(f'<h2>{collection_name}</h2>')
 
 
-def add_task(request):
-    collection = Collection.get_default_collection()
+def add_task(request, collection_pk):
+    collection = Collection.objects.get(pk=collection_pk)
 
     description = escape(request.POST.get("task-description"))
     Task.objects.create(description=description, collection=collection)
