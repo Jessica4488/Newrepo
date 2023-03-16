@@ -16,7 +16,7 @@ Proof of concept(POC)
 [x] Ajouter une collection
 - Supprimer une collection
 [x] Empêcher l'ajout d'une collection en doublon 
-- Ajouter une tâche (reliée à une collection) 
+[] Ajouter une tâche (reliée à une collection) 
 - Supprimer une tâche 
 [x] Afficher les tâches d'une collection 
 [x] Créer une liste par défaut

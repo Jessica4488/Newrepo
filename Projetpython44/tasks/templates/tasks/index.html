@@ -13,7 +13,8 @@
 <div id="collections">
     {% for collection in collections %}
         <button hx-get="{% url 'get-tasks' collection.pk %}"
-        hx-target="#tasks"> {{ collection.name }} </button>
+                hx-push-url="?collection={{ collection.slug }}"
+                hx-target="#tasks">{{ collection.name }}</button>
     {% endfor %}
 </div>
 
@@ -31,7 +32,7 @@
 <form method="POST">
     {% csrf_token %}
     <input type="text" name="task-description">
-    <button hx-post="{% url 'add-task' collection.pk %}"
+    <button hx-post="{% url 'add-task' %}"
             hx-target="#tasks"
             hx-swap="beforeend"
             type="submit">

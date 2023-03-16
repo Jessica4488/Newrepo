@@ -31,9 +31,10 @@ def add_collection(request):
     return HttpResponse(f'<h2>{collection_name}</h2>')
 
 
-def add_task(request, collection_pk):
-    collection = Collection.objects.get(pk=collection_pk)
-
+def add_task(request):
+    print(request.GET)
+    #collection = Collection.objects.get(pk=collection_pk)
+    return HttpResponse("")
     description = escape(request.POST.get("task-description"))
     Task.objects.create(description=description, collection=collection)
 
