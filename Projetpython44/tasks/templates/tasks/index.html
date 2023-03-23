@@ -12,9 +12,7 @@
 
 <div id="collections">
     {% for collection in collections %}
-        <button hx-get="{% url 'get-tasks' collection.pk %}"
-                hx-push-url="?collection={{ collection.slug }}"
-                hx-target="#tasks">{{ collection.name }}</button>
+        {% include 'tasks/collection.html' with collection=collection %}
     {% endfor %}
 </div>
 
@@ -34,6 +32,7 @@
     <input type="text" name="task-description">
     <button hx-post="{% url 'add-task' %}"
             hx-target="#tasks"
+            hx-vals='js:{collection: getCollectionFromURL()}'
             hx-swap="beforeend"
             type="submit">
         Ajouter
@@ -49,6 +48,14 @@
     document.body.addEventListener("htmx:responseError", function(evt) {
         alert(evt.detail.xhr.responseText);
     })
+
+    function getCollectionFromURL() {
+        let url = new URL(window.location.href);
+        let searchParams = url.searchParams;
+        return searchParams.get("collection");
+
+    }
+
 </script>
 
 </body>

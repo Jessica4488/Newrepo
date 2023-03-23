@@ -28,17 +28,16 @@ def add_collection(request):
     if not created:
         return HttpResponse("La collection existe déja.", status=409)
 
-    return HttpResponse(f'<h2>{collection_name}</h2>')
+    return render(request, 'tasks/collection.html', context={"collection": collection})
 
 
 def add_task(request):
-    print(request.GET)
-    #collection = Collection.objects.get(pk=collection_pk)
-    return HttpResponse("")
+    print(request.POST)
+    collection = Collection.objects.get(slug=request.POST.get("collection"))
     description = escape(request.POST.get("task-description"))
-    Task.objects.create(description=description, collection=collection)
+    task = Task.objects.create(description=description, collection=collection)
 
-    return HttpResponse(description)
+    return render(request, 'tasks/task.html', context={"task": task})
 
 def get_tasks(request, collection_pk):
     collection = get_object_or_404(Collection, pk=collection_pk)
